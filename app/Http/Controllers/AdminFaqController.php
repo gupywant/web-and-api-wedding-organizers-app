@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Faq;
+use Session;
 
 class AdminFaqController extends Controller
 {

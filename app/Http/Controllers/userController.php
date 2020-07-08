@@ -9,6 +9,70 @@ use Mail;
 
 class userController extends Controller
 {
+    public function forgot(Request $request){
+        $checkUser = User::where("username",$request->username)->first();
+        if(!empty($checkUser)){
+            try{
+                Mail::send('reset', ['link' => route('user.reset').'?token='.md5($checkUser->token)."&username=".$checkUser->username], function ($message) use ($request)
+                {
+                    $message->subject("Aktifasi Pendaftaran - Bride Moment");
+                    $message->to($request->username);
+                });
+                $data["status"] = "success";
+                $data['message'] = "Email Reset Telah Dikirim";
+            }catch(Exception $e){
+                $data += array('status' => "failed",'message' => $e->getMessage());
+            }
+        }else{
+            $data["status"] = "failed";
+            $data['message'] = "Email Tidak Ditemukan";
+            $data['token'] = null;
+        }
+        return response($data, 200, ['Content-Type => application/json']);
+    }
+
+    public function reset(Request $request){
+        $checkUser = User::where("username",$request->username)->first();
+        if(!empty($checkUser)){
+            if(md5($checkUser->token)==$request->token){
+                $data['token'] = md5($checkUser->token);
+                $data['username'] = $request->username;
+
+                return view('user.reset',$data);
+            }else{
+                echo  "<script>alert('Data Tidak Valid')</script>";
+            }
+        }else{
+            echo  "<script>alert('Data Tidak Valid')</script>";
+        }
+    }
+
+    public function resetPost(Request $request){
+        $checkUser = User::where("username",$request->username)->first();
+        if(!empty($checkUser)){
+            if(md5($checkUser->token)==$request->key){
+                if(strlen($request->pass1)>=8){
+                    if($request->pass1==$request->pass2){
+                        $update = array(
+                            "password" => Hash::make($request->pass1)
+                        );
+                        User::where('username',$request->username)->update($update);
+
+                        echo  "<script>alert('Password Berhasil Direset')</script>";
+                    }else{
+                        return back()->with('message','Password Tidak sama');
+                    }
+                }else{
+                    return back()->with('message','Password Minimal 8 Karakter');
+                }
+            }else{
+                echo  "<script>alert('Data Tidak Valid')</script>";
+            }
+        }else{
+            echo  "<script>alert('Data Tidak Valid')</script>";
+        }
+    }
+
     public function login(Request $request){
     	$checkUser = User::where("username",$request->username)->first();
     	if(!empty($checkUser)){
@@ -41,7 +105,7 @@ class userController extends Controller
         	    	$userAdd = new User;
         	    	$userAdd->username = $request->username;
         	    	$userAdd->name = $request->name;
-        	    	$userAdd->password = Hash::make("N3wUser");
+        	    	$userAdd->password = $request->password;
         	    	$userAdd->gender = $request->gender;
         	    	$userAdd->tlp = $request->tlp;
         	    	$userAdd->address = $request->address;
@@ -57,7 +121,7 @@ class userController extends Controller
         	    	$userAdd->save();
 
                     try{
-                        Mail::send('email', ['link' => route('user.activation',$userAdd->token)], function ($message) use ($request)
+                        Mail::send('email', ['link' => route('user.activation').'?key='.$userAdd->token], function ($message) use ($request)
                         {
                             $message->subject("Aktifasi Pendaftaran - Bride Moment");
                             $message->to($request->username);
@@ -67,7 +131,7 @@ class userController extends Controller
                     }
 
         	    	$data["status"] = "success";
-           			$data['message'] = "Berhasil Terdaftar";
+           			$data['message'] = "Berhasil mendaftar, cek email untuk verifikasi";
                 }else{
                     $data["status"] = "failed";
                     $data['message'] = "Password Tidak Sama";
@@ -94,12 +158,12 @@ class userController extends Controller
 			'address' => $request->address,
 			'city' => $request->city,
 			'province' => $request->province,
+            'birth_date' => $request->birth_date,
 			'postal_code' => $request->postal_code,
-			'description' => $request->description,
 			'updated_at' => $date
 		);
 
-		User::where('token',$return->token)->update($update);
+		User::where('token',$request->token)->update($update);
 
 		$data["status"] = "success";
    		$data['message'] = "Profile Berhasil Diupdate";
@@ -108,11 +172,27 @@ class userController extends Controller
     }
 
     public function password(Request $request){
-    	$update = array('password' => $request->password );
-    	User::where('token',$request->token)->update($update);
+        $checkUser = User::where("token",$request->token)->first();
+        if(Hash::check($request->passwordOld,$checkUser->password)){
+            if(strlen($request->password)>=8){
+                if($request->password==$request->passwordConfirm){
+                	$update = array('password' => Hash::make($request->password) );
+                	User::where('token',$request->token)->update($update);
 
-		$data["status"] = "success";
-   		$data['message'] = "Password Berhasil Diupdate";
+            		$data["status"] = "success";
+               		$data['message'] = "Password Berhasil Diupdate";
+                }else{
+                    $data["status"] = "failed";
+                    $data['message'] = "Password Tidak Sama";
+                }
+            }else{
+                $data["status"] = "failed";
+                $data['message'] = "Password Minimal 8 Karakter";
+            }
+        }else{
+            $data["status"] = "failed";
+            $data['message'] = "Password Lama Salah";
+        }
 
     	return response($data, 200, ['Content-Type => application/json']);
     }
@@ -125,11 +205,11 @@ class userController extends Controller
     	return response($data, 200, ['Content-Type => application/json']);
     }
 
-    public function activation($key){
+    public function activation(Request $request){
         $update = array(
             "activate" => 1
         );
-        User::where('token',$key)->update($update);
+        User::where('token',$request->key)->update($update);
 
         echo "<script>alert('aktivasi selesai')</script>";
     }

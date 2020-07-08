@@ -10,9 +10,9 @@ class bookingController extends Controller
 {
     public function add(Request $request){
     	$user = User::where('token',$request->token)->first();
-    	$start_date = $request->start_date;
-    	$end_date = $request->end_date;
-    	$checkBooking = ItemBooking::whereRaw("(start_date between '$start_date' and '$end_date') or (end_date between '$start_date' and '$end_date')")->get();
+    	$start_date = $request->start_date." 00:00:00";
+    	$end_date = $request->end_date." 23:59:00";
+    	$checkBooking = ItemBooking::whereRaw("(start_date between '$start_date' and '$end_date') or (end_date between '$start_date' and '$end_date') and id_item=$request->id_item")->get();
     	if(empty($checkBooking[0]->start_date)){
     		$new = new ItemBooking;
     		$new->id_user = $user->id_user;
@@ -34,7 +34,7 @@ class bookingController extends Controller
 
     public function requesting(Request $request){
     	$user = User::where('token',$request->token)->first();
-    	$data['list'] = ItemBooking::where([['id_user',$user->id_user],['status',0]])->get();
+    	$data['list'] = ItemBooking::selectRaw('item.name,item.city,(select file_name from item_image a where id_image = (select min(id_image) from item_image where id_item = item.id_item )) as file_name,item_booking.*')->leftJoin('item','item.id_item','=','item_booking.id_item')->where([['id_user',$user->id_user],['status',0]])->get();
 
     	$data["status"] = "success";
 
@@ -43,7 +43,7 @@ class bookingController extends Controller
 
     public function reserved(Request $request){
     	$user = User::where('token',$request->token)->first();
-    	$data['list'] = ItemBooking::where([['id_user',$user->id_user],['status',1]])->get();
+    	$data['list'] = ItemBooking::selectRaw('item.name,item.city,(select file_name from item_image a where id_image = (select min(id_image) from item_image where id_item = item.id_item )) as file_name,item_booking.*')->leftJoin('item','item.id_item','=','item_booking.id_item')->where([['id_user',$user->id_user],['status',1]])->get();
 
     	$data["status"] = "success";
 

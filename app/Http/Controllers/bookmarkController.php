@@ -34,7 +34,8 @@ class bookmarkController extends Controller
 
     public function list(Request $request){
     	$user = User::where('token',$request->token)->first();
-    	$data['list'] = ItemBookmark::where('id_user',$user->id_user)->get();
+    	$data['list'] = ItemBookmark::selectRaw('item.name,item.city,(select file_name from item_image a where id_image = (select min(id_image) from item_image where id_item = item.id_item )) as file_name,item_bookmark.*')->leftJoin('item','item.id_item','=','item_bookmark.id_item')->where('id_user',$user->id_user)->get();
+        $data["status"] = "success";
 
     	return response($data, 200, ['Content-Type => application/json']);
     }

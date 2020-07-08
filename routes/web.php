@@ -18,7 +18,9 @@ Route::get('/', function () {
 Route::get('login',['as'=>'login', 'uses'=>'adminLoginController@index']);
 Route::post('loginCheck',['as'=>'loginCheck', 'uses'=>'adminLoginController@login']);
  
-Route::get('activation/{key}',['as'=>'user.activation', 'uses'=>'userController@activation']);
+Route::get('activation',['as'=>'user.activation', 'uses'=>'userController@activation']);
+Route::get('reset',['as'=>'user.reset', 'uses'=>'userController@reset']);
+Route::post('resetPost',['as'=>'user.resetPost', 'uses'=>'userController@resetPost']);
 
 Route::middleware('sessionHasAdmin')->prefix('admin')->group(function () {
 	//dashboard

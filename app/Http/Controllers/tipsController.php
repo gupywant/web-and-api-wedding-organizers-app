@@ -9,6 +9,13 @@ use File;
 
 class tipsController extends Controller
 {
+    public function list(Request $request){
+        $data['tips'] = Tips::where('id_tips',$request->id_tips)->first();
+        $data['status'] = 'success';
+        
+        return response($data, 200, ['Content-Type => application/json']);
+    }
+
     public function tips(){
     	$data['tips'] = Tips::all();
     	return view('user.tipsList',$data);

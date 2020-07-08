@@ -87,29 +87,31 @@ class itemController extends Controller
 
         //add image
         $allFile = $request->file('foto');
-        foreach ($request->foto as $key => $data) {
-            $file = $allFile[$key];
-            //image check
-            $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
-            $contentType = $file->getClientMimeType();
+        if(!empty($request->foto)){
+            foreach ($request->foto as $key => $data) {
+                $file = $allFile[$key];
+                //image check
+                $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
+                $contentType = $file->getClientMimeType();
 
-            if(! in_array($contentType, $allowedMimeTypes) ){
-                return back()->with('alert','Upload Hanya gambar');
+                if(! in_array($contentType, $allowedMimeTypes) ){
+                    return back()->with('alert','Upload Hanya gambar');
+                }
+
+                $path = public_path().'/filesdat/'.$itemAdd->id;
+                if (!file_exists($path)) {
+                    File::makeDirectory($path, $mode = 0777, true, true);
+                }
+
+                $file->move($path,$file->getClientOriginalName());
+
+                $addImage = new ItemImage;
+                $addImage->id_item = $itemAdd->id;
+                $addImage->file_name = $file->getClientOriginalName();
+                $addImage->updated_at = $date;
+                $addImage->created_at = $date;
+                $addImage->save();
             }
-
-            $path = public_path().'/filesdat/'.$itemAdd->id;
-            if (!file_exists($path)) {
-                File::makeDirectory($path, $mode = 0777, true, true);
-            }
-
-            $file->move($path,$file->getClientOriginalName());
-
-            $addImage = new ItemImage;
-            $addImage->id_item = $itemAdd->id;
-            $addImage->file_name = $file->getClientOriginalName();
-            $addImage->updated_at = $date;
-            $addImage->created_at = $date;
-            $addImage->save();
         }
 
         return back()->with('message','service berhasil ditambah');
@@ -128,7 +130,7 @@ class itemController extends Controller
         $update = array(
                 'name' => $request->name,
                 'price_day' => $request->price,
-                'description' => $request->description,
+                'description' => $request->descriptions,
                 'address' => $request->address,
                 'city' => $request->city,
                 'province' => $request->province,
@@ -138,29 +140,32 @@ class itemController extends Controller
         Item::where('id_item',$id)->update($update);
         //add image
         $allFile = $request->file('foto');
-        foreach ($request->foto as $key => $data) {
-            $file = $allFile[$key];
-            //image check
-            $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
-            $contentType = $file->getClientMimeType();
 
-            if(! in_array($contentType, $allowedMimeTypes) ){
-                return back()->with('alert','Upload Hanya gambar');
+        if(!empty($request->foto)){
+            foreach ($request->foto as $key => $data) {
+                $file = $allFile[$key];
+                //image check
+                $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
+                $contentType = $file->getClientMimeType();
+
+                if(! in_array($contentType, $allowedMimeTypes) ){
+                    return back()->with('alert','Upload Hanya gambar');
+                }
+
+                $path = public_path().'/filesdat/'.$id;
+                if (!file_exists($path)) {
+                    File::makeDirectory($path, $mode = 0777, true, true);
+                }
+
+                $file->move($path,$file->getClientOriginalName());
+
+                $addImage = new ItemImage;
+                $addImage->id_item = $id;
+                $addImage->file_name = $file->getClientOriginalName();
+                $addImage->updated_at = $date;
+                $addImage->created_at = $date;
+                $addImage->save();
             }
-
-            $path = public_path().'/filesdat/'.$id;
-            if (!file_exists($path)) {
-                File::makeDirectory($path, $mode = 0777, true, true);
-            }
-
-            $file->move($path,$file->getClientOriginalName());
-
-            $addImage = new ItemImage;
-            $addImage->id_item = $id;
-            $addImage->file_name = $file->getClientOriginalName();
-            $addImage->updated_at = $date;
-            $addImage->created_at = $date;
-            $addImage->save();
         }
         return back()->with('message','Service Berhasil Diupdate');
     }

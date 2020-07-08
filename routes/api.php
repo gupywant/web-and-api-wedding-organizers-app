@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 Route::post('login',['as'=>'user.login', 'uses'=>'userController@login']);
 Route::post('register',['as'=>'user.login', 'uses'=>'userController@register']);
-
+Route::post('userForgot',['as'=>'api.userForgot', 'uses'=>'userController@forgot']);
 Route::middleware('userHasLogin')->prefix('private')->group(function () {
 	//user dashborad
 	Route::post('dashboard',['as'=>'api.dashborad', 'uses'=>'userDashboardController@dashboard']);
@@ -24,8 +24,11 @@ Route::middleware('userHasLogin')->prefix('private')->group(function () {
 	Route::post('userUpdate',['as'=>'api.userUpdate', 'uses'=>'userController@update']);
 	Route::post('userPassword',['as'=>'api.userPassword', 'uses'=>'userController@password']);
 	Route::post('userProfile',['as'=>'api.userProfile', 'uses'=>'userController@profile']);
+	Route::post('userForgot',['as'=>'api.userForgot', 'uses'=>'userController@forgot']);
 	//Faq
 	Route::post('faq',['as'=>'api.faq', 'uses'=>'UserFaqController@faq']);
+	//tips
+	Route::post('tips',['as'=>'api.tips', 'uses'=>'tipsController@list']);
 	//booking
 	Route::post('bookingAdd',['as'=>'api.bookingAdd', 'uses'=>'bookingController@add']);
 	Route::post('bookingRequesting',['as'=>'api.bookingRequesting', 'uses'=>'bookingController@requesting']);

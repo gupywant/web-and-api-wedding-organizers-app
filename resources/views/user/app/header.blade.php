@@ -162,7 +162,7 @@
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" data-toggle="modal" data-target="#pwModal">
+              <a class="nav-link" href="{{route('user.faqList')}}">
                 <i class="fa fa-question-circle"></i>
                 <span class="nav-link-text">Faq List</span>
               </a>
