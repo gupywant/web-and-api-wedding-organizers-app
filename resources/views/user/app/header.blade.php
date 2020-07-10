@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+  <title>Bride Moment Admin</title>
   <!-- Favicon -->
   <link rel="icon" href="/assets_user/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
@@ -45,7 +45,7 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="/assets_user/img/brand/blue.png" class="navbar-brand-img" alt="...">
+          <font class="text-blue">Bride Moment Admin</font>
         </a>
       </div>
       <div class="navbar-inner">
@@ -347,6 +347,9 @@
             <li class="nav-item dropdown">
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
+                  <span class="avatar avatar-sm rounded-circle">
+                    <i class="fa fa-user"></i>
+                  </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{Session::get('username')}}</span>
                   </div>

@@ -54,6 +54,7 @@ Route::middleware('sessionHasAdmin')->prefix('admin')->group(function () {
 	Route::get('ownServiceListIndex',['as'=>'user.ownServiceListIndex', 'uses'=>'itemController@ownServiceListIndex']);
 	Route::get('serviceTypeIndex',['as'=>'user.serviceTypeIndex', 'uses'=>'itemController@serviceTypeIndex']);
 	Route::post('serviceTypeAdd',['as'=>'user.serviceTypeAdd', 'uses'=>'itemController@serviceTypeAdd']);
+	Route::post('serviceTypeEdit/{id}',['as'=>'user.serviceTypeEdit', 'uses'=>'itemController@serviceTypeEdit']);
 	Route::get('serviceAddIndex',['as'=>'user.serviceAddIndex', 'uses'=>'itemController@serviceAddIndex']);
 	Route::post('serviceAddNew',['as'=>'user.serviceAddNew', 'uses'=>'itemController@serviceAddNew']);
 

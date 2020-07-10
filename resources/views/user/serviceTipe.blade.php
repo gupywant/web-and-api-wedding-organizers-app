@@ -100,6 +100,44 @@
 	                	$no = 1;
 	                @endphp
 	                @foreach($type as $key => $data)
+	               	<!-- Modal -->
+					<div class="modal fade" id="Modal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Booking No {{substr(md5($data->id_booking),0,10)}}/ID{{$data->id_booking}}</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">			        	
+					        <form action="{{route('user.serviceTypeEdit',$data->id_type)}}" method="post">
+					        	{{csrf_field()}}
+					        	<div class="row">				            
+									<div class="row">
+									    <div class="col-lg-12">
+									    	<div class="form-group">
+									        	<label class="form-control-label" for="input-username">Jenis</label>
+									        	<input value="{{$data->name}}" type="text" name="name" id="input-username" class="form-control" placeholder="Type Name">
+									    	</div>
+									    </div>
+									    <div class="col-lg-12">
+											<div class="form-group">
+												<label class="form-control-label" for="input-email">Deskripsi</label>
+												<textarea rows="4" class="form-control" name="description" placeholder="Description">{{$data->description}}</textarea>
+											</div>
+									    </div>
+									</div>
+						        </div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <button type="submit" class="btn btn-primary">Save</button>
+					        </form>
+					    </div>
+					  </div>
+					</div>
+					<!-- end of modal -->
 		                  <tr>
 		                    <th scope="row">
 		                		{{$no++}}
@@ -120,9 +158,8 @@
 		                          <i class="fas fa-ellipsis-v"></i>
 		                        </a>
 		                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-		                          <a class="dropdown-item" href="#">Edit</a>
-		                          <a class="dropdown-item" href="#">Ubah Password</a>
-		                          <a class="dropdown-item" href="#">Delete</a>
+		                          <a class="dropdown-item" data-toggle="modal" data-target="#Modal{{$key}}">
+								 	Detail/Edit</a>
 		                        </div>
 		                      </div>
 		                    </td>

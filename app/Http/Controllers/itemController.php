@@ -60,6 +60,26 @@ class itemController extends Controller
         }
     }
 
+    public function serviceTypeEdit(Request $request,$id){
+
+        date_default_timezone_set("Asia/jakarta");
+
+        $date = Date('Y-m-d H:i:s');
+        if(empty($ftype)){
+            $update = array(
+                "name" => $request->name,
+                "description" => $request->description,
+                "updated_at" => $date
+            );
+
+            ItemType::where('id_type',$id)->update($update);
+            return back()->with('message','Tipe berhasil diedit');
+        }else{
+            return back()->with('alert','Tipe Sudah Ada');
+        }
+
+    }
+
     public function serviceAddIndex(){
         $data['type'] = ItemType::all();
     	return view('user.serviceAdd',$data);
