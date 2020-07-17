@@ -64,7 +64,7 @@
 		                </div>
 		                <div class="col-4 text-right">
 		                  	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-							 	Add Type
+							 	Add Faq
 							</button>
 		                </div>
 		            </div>

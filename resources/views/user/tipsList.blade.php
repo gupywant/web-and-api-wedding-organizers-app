@@ -5,7 +5,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Tips & Trick</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Tips & Tricks</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -16,7 +16,7 @@
         	<div class="row">
 	            <div class="col-lg-12">
 	            	<div class="form-group">
-	                	<label class="form-control-label" for="input-username">Pertanyaan</label>
+	                	<label class="form-control-label" for="input-username">Title</label>
 	                	<input type="text" name="title" id="input-username" class="form-control" placeholder="Judul" required="">
 	            	</div>
 	            </div>
@@ -51,12 +51,12 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Tips & Trick List</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Tips & Tricks List</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="#">Tips & Trick</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Tips & Trick List</li>
+                  <li class="breadcrumb-item"><a href="#">Tips & Tricks</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tips & Tricks List</li>
                 </ol>
               </nav>
             </div>
@@ -66,11 +66,11 @@
 	            <div class="card-header border-0">
 	            	<div class="row">
 		            	<div class="col-8">
-		            		<h3 class="mb-0">Tips & Trick</h3>
+		            		<h3 class="mb-0">Tips & Tricks</h3>
 		                </div>
 		                <div class="col-4 text-right">
 		                  	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-							 	Add Tips & Trick
+							 	Add Tips & Tricks
 							</button>
 		                </div>
 		            </div>

@@ -33,9 +33,6 @@
   <!-- Navbar -->
   <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="dashboard.html">
-        <img src="/assets_user/img/brand/white.png">
-      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -43,41 +40,27 @@
         <div class="navbar-collapse-header">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="dashboard.html">
-                <img src="/assets_user/img/brand/blue.png">
+              <a href="#">
+                Login
               </a>
             </div>
             <div class="col-6 collapse-close">
               <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
               </button>
             </div>
           </div>
         </div>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a href="login.html" class="nav-link">
-              <span class="nav-link-inner--text">Login</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="register.html" class="nav-link">
-              <span class="nav-link-inner--text">Register</span>
-            </a>
-          </li>
-        </ul>
       </div>
     </div>
   </nav>
   <!-- Main content -->
   <div class="main-content">
     <!-- Header -->
-    <div class="header py-2 py-lg-5 pt-lg-6 " style="background: linear-gradient(87deg, #02a26e 0, #1e6f55 100%) !important;">
+    <div class="header py-2 py-lg-7 pt-lg-6 " style="background: linear-gradient(87deg, #02a26e 0, #1e6f55 100%) !important;">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
-            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+            <div class="col-xl-5 col-lg-6 col-md-8 px-6">
               <h1 class="text-white">Welcome!</h1>
               <p class="text-lead text-white">Silahkan Login Dengan Akun Anda</p>
             </div>
@@ -91,7 +74,7 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--8 pb-5">
+    <div class="container mt--8 pb-6">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
@@ -131,24 +114,10 @@
                     <input class="form-control" name="password" placeholder="Password" type="password">
                   </div>
                 </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
-                  </label>
-                </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary my-4">Sign in</button>
                 </div>
               </form>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-              <a href="#" class="text-light"><small>Forgot password?</small></a>
-            </div>
-            <div class="col-6 text-right">
-              <a href="#" class="text-light"><small>Create new account</small></a>
             </div>
           </div>
         </div>
