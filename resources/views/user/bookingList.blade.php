@@ -115,9 +115,9 @@
 				                       		<label class="form-control-label" for="input-last-name">Status</label>
 											<div class="input-group">
 											    <select class="form-control" name="status">
-											    	<option value="1" @if($data->status==1) selected @endif>Requesting</option>
-											    	<option value="2" @if($data->status==2) selected @endif>Reserved</option>
-											    	<option value="3" @if($data->status==3) selected @endif>Rejected</option>
+											    	<option value="0" @if($data->status==0) selected @endif>Requesting</option>
+											    	<option value="1" @if($data->status==1) selected @endif>Reserved</option>
+											    	<option value="2" @if($data->status==2) selected @endif>Rejected</option>
 											    </select>
 											</div>
 										</div>
@@ -129,6 +129,7 @@
 											    <input type="submit" class="btn btn-info" value="Update Status">
 											</div>
 										</div>
+									</form>
 				                    </div>
 				                </div>
 					      </div>
@@ -158,9 +159,9 @@
 	                    <td>
 	                    	@if($data->status==0)
 	                    		<span class="badge badge-info">Requesting</span>
-	                    	@elseif($data->status==2)
+	                    	@elseif($data->status==1)
 	                    		<span class="badge badge-success">Reserved</span>
-	                    	@elseif($data->status==3)
+	                    	@elseif($data->status==2)
 	                    		<span class="badge badge-danger">Rejected</span>
 	                    	@endif
 	                    </td>

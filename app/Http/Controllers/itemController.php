@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\ItemType;
+use App\Model\User;
 use App\Model\ItemImage;
 use App\Model\Item;
 use App\Model\ItemBooking;
 use App\Model\ItemView;
+use App\Model\ItemViewUser;
 use App\Model\ItemBookmark;
 use Session;
 use File;
@@ -209,6 +211,7 @@ class itemController extends Controller
             ItemView::where('id_item',$id_item)->delete();
             ItemBooking::where('id_item',$id)->delete();
             ItemBookmark::where('id_item',$id)->delete();
+            ItemViewUser::where('id_item',$id)->delete();
         }
         Item::where('id_item',$id)->delete();
 
@@ -218,6 +221,42 @@ class itemController extends Controller
     public function serviceImageDelete($id){
         ItemImage::where('id_image',$id)->delete();
         return back()->with('message','Gambar Berhasil Dihapus');
+    }
+
+    public function addView(Request $request){
+        date_default_timezone_set("Asia/jakarta");
+        
+        $date = date('Y-m-d H:i:s');
+        $user = User::where('token',$request->token)->first();
+        $find = ItemView::where('id_item',$request->id_item)->first();
+        if(!empty($find->count)){
+            $update = array(
+                "count" => $find->count+1
+            );
+
+            ItemView::where('id_item',$request->id_item)->update($update);
+
+            $idView = $find->id_view;
+        }else{
+            $newView = new ItemView;
+            $newView->id_item = $request->id_item;
+            $newView->count = 1;
+            $newView->created_at = $date;
+            $newView->updated_at = $date;
+            $newView->save();
+
+            $idView = $newView->id;
+        }
+        $newViewUser = new ItemViewUser;
+        $newViewUser->id_view = $idView;
+        $newViewUser->id_user = $user->id_user;
+        $newViewUser->created_at = $date;
+        $newViewUser->updated_at = $date;
+        $newViewUser->save();
+
+        $data["status"] = "success";
+        $data['message'] = "View Added";
+        return response($data, 200, ['Content-Type => application/json']);
     }
 
 }

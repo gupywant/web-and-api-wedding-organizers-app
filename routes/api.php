@@ -43,4 +43,5 @@ Route::middleware('userHasLogin')->prefix('private')->group(function () {
 	Route::post('kategori',['as'=>'api.kategori', 'uses'=>'userSearchController@kategori']);
 	Route::post('result',['as'=>'api.result', 'uses'=>'userSearchController@result']);
 	Route::post('detail',['as'=>'api.detail', 'uses'=>'userSearchController@detail']);
+	Route::post('addView',['as'=>'api.addView', 'uses'=>'itemController@addView']);
 });

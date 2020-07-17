@@ -11,6 +11,7 @@ use App\Model\ItemImage;
 use App\Model\ItemBooking;
 use App\Model\ItemBookmark;
 use App\Model\ItemView;
+use App\Model\ItemViewUser;
 use Session;
 
 class adminController extends Controller
@@ -162,6 +163,7 @@ class adminController extends Controller
 	    	ItemImage::where('id_item',$value->id_item)->delete();
 	    	ItemBooking::where('id_item',$value->id_item)->delete();
 	    	ItemView::where('id_item',$value->id_item)->delete();
+            ItemViewUser::where('id_item',$value->id_item)->delete();
 	    }
     	Item::where('id_admin',$id)->delete();
     	Admin::where('id_admin',$id)->delete();
@@ -170,7 +172,7 @@ class adminController extends Controller
 
     public function deleteUser($id){
     	ItemBooking::where('id_user',$id)->delete();
-    	ItemView::where('id_user',$id)->delete();
+        ItemViewUser::where('id_user',$id)->delete();
     	ItemBookmark::where('id_user',$id)->delete();
     	User::where('id_user',$id)->delete();
 
