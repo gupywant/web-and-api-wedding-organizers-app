@@ -150,7 +150,7 @@ class itemController extends Controller
         
         $date = date('Y-m-d H:i:s');
         $update = array(
-                'id_type' => $request->type;
+                'id_type' => $request->type,
                 'name' => $request->name,
                 'price_day' => $request->price,
                 'description' => $request->descriptions,
