@@ -31,12 +31,12 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Add Service</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Update Service</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Service</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Add Service</li>
+                  <li class="breadcrumb-item active" aria-current="page">Update Service</li>
                 </ol>
               </nav>
             </div>
@@ -45,7 +45,7 @@
 	            <div class="card-header">
 	              <div class="row align-items-center">
 	                <div class="col-8">
-		                <h3 class="mb-0">Add Service</h3>
+		                <h3 class="mb-0">Update Service</h3>
 		                <div class="row">
 		            		<div class="col-sm-12">
 		            			@if(session('message'))
@@ -91,7 +91,7 @@
 							  <label class="form-control-label" for="input-last-name">Type</label>
 							  <select name="type" class="form-control" id="sel1">
 							  	@foreach($type as $data)
-							    	<option value="{{$data->id_type}}">{{$data->name}}</option>
+							    	<option value="{{$data->id_type}}" {{$item->id_type==$data->id_type ? 'selected' : null}}>{{$data->name}}</option>
 							    @endforeach
 							  </select>
 							</div>
@@ -202,10 +202,10 @@
 	            <div class="card-footer">
 	              <div class="row align-items-center">
 	                <div class="col-8">
-	                  <h3 class="mb-0">Add Service</h3>
+	                  <h3 class="mb-0">Update Service</h3>
 	                </div>
 	                <div class="col-4 text-right">
-	                  <input type="submit" class="btn btn-md btn-primary" value="Add Service">
+	                  <input type="submit" class="btn btn-md btn-primary" value="Update Service">
 	                </div>
 	              </div>
 	            </div>
