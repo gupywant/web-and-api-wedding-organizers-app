@@ -208,7 +208,7 @@ class itemController extends Controller
         $item = Item::where('id_item',$id)->get();
         foreach ($item as $key => $value) {
             ItemImage::where('id_item',$id)->delete();
-            ItemView::where('id_item',$id_item)->delete();
+            ItemView::where('id_item',$id)->delete();
             ItemBooking::where('id_item',$id)->delete();
             ItemBookmark::where('id_item',$id)->delete();
             ItemViewUser::where('id_item',$id)->delete();

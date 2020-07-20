@@ -18,7 +18,6 @@
 	          <div class="card">
 	            <!-- Card header -->
 	            <div class="card-header border-0">
-	              <h3 class="mb-0">Admin List</h3>
 	              <div class="row">
 	            		<div class="col-sm-12">
 	            			@if(session('message'))
