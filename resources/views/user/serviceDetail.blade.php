@@ -91,7 +91,7 @@
 							  <label class="form-control-label" for="input-last-name">Type</label>
 							  <select name="type" class="form-control" id="sel1">
 							  	@foreach($type as $data)
-							    	<option value="{{$data->id_type}}" {{$item->id_type==$data->id_type ? 'selected' : null}}>{{$data->name}}</option>
+							    	<option value="{{$data->id_type}}" {{$item->id_type==$data->id_type ? "selected" : null}}>{{$data->name}}</option>
 							    @endforeach
 							  </select>
 							</div>
