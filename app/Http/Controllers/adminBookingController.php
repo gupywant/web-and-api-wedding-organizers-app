@@ -60,7 +60,7 @@ class adminBookingController extends Controller
 
             return back()->with('message','Booking Berhasil ditambahkan');
         }else{
-            return back()->with('message','Tanggal sudah dipesan');
+            return back()->with('alert','Tanggal sudah dipesan');
         }
     }
 
