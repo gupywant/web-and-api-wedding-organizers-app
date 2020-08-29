@@ -61,20 +61,7 @@
 	                    </div>
 	                  </div>
 	                  <div class="row">
-	                    <div class="col-lg-4">
-	                       <div class="form-group">
-							  <label class="form-control-label" for="input-last-name">User Type</label>
-							  <select name="userType" class="form-control" id="sel1">
-							  	@if(!empty($user->type))
-								    <option value="1" @if($user->type==1) selected @endif>Admin</option>
-								    <option value="2" @if($user->type==2) selected @endif>Vendor</option>
-								@else
-							    	<option value="3">Standart User</option>
-							    @endif
-							  </select>
-							</div>
-	                    </div>
-	                    <div class="col-lg-4">
+	                    <div class="col-lg-6">
 	                       <div class="form-group">
 							  <label class="form-control-label" for="input-last-name">Gender</label>
 							  <select name="gender" class="form-control" id="sel1">
@@ -83,7 +70,7 @@
 							  </select>
 							</div>
 	                    </div>
-	                    <div class="col-lg-4">
+	                    <div class="col-lg-6">
 	                       	<div class="form-group">
 	                       		<label class="form-control-label" for="input-last-name">Birth Date</label>
 								<div class="input-group">
