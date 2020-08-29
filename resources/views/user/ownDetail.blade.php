@@ -66,7 +66,7 @@
 							  <label class="form-control-label" for="input-last-name">Gender</label>
 							  <select name="gender" class="form-control" id="sel1">
 							    <option value="1" @if($user->gender==1) selected @endif>Male</option>
-							    <option value="2" @if($user->gender==1) selected @endif>Female</option>
+							    <option value="2" @if($user->gender==2) selected @endif>Female</option>
 							  </select>
 							</div>
 	                    </div>
@@ -126,15 +126,6 @@
 	                        <input type="number" id="input-postal-code" name="postal_code" class="form-control" placeholder="Kode Pos" value="{{$user->postal_code}}" required="">
 	                      </div>
 	                    </div>
-	                  </div>
-	                </div>
-	                <hr class="my-4" />
-	                <!-- Description -->
-	                <h6 class="heading-small text-muted mb-4">About User</h6>
-	                <div class="pl-lg-4">
-	                  <div class="form-group">
-	                    <label class="form-control-label">User Description</label>
-	                    <textarea rows="4" class="form-control" name="description" placeholder="Catatan Tentang User">{{$user->description}}</textarea>
 	                  </div>
 	                </div>
 	            </div>
