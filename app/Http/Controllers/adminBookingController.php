@@ -44,9 +44,9 @@ class adminBookingController extends Controller
 
     public function bookingAddNew(Request $request){
     	$date = Date('Y-m-d');
-        $start_date = $request->start_date." 00:00:00";
-        $end_date = $request->end_date." 23:59:00";
-        $checkBooking = ItemBooking::whereRaw("((start_date; between '$start_date' and '$end_date') or (end_date between '$start_date' and '$end_date')) and id_item=$request->id_item")->first();
+        $start_date = $request->start." 00:00:00";
+        $end_date = $request->end." 23:59:00";
+        $checkBooking = ItemBooking::whereRaw("((start_date between '$start_date' and '$end_date') or (end_date between '$start_date' and '$end_date')) and id_item=$request->id_item")->first();
         if(empty($checkBooking->start_date)){    
             $booking = new ItemBooking;
             $booking->id_user = $request->id_user;
