@@ -44,18 +44,24 @@ class adminBookingController extends Controller
 
     public function bookingAddNew(Request $request){
     	$date = Date('Y-m-d');
-    	//$cekDate = ItemBooking::where([['start_date',$request->start],['end_date',$request->end]])->first
-    	$booking = new ItemBooking;
-    	$booking->id_user = $request->id_user;
-    	$booking->id_item = $request->id_item;
-    	$booking->start_date = $request->start;
-    	$booking->end_date = $request->end;
-    	$booking->status = 0;
-    	$booking->created_at = $date;
-    	$booking->updated_at = $date;
-    	$booking->save();
+        $start_date = $request->start_date." 00:00:00";
+        $end_date = $request->end_date." 23:59:00";
+        $checkBooking = ItemBooking::whereRaw("((start_date between '$start_date' and '$end_date') or (end_date between '$start_date' and '$end_date')) and id_item=$request->id_item")->first();
+        if(empty($checkBooking)){    
+            $booking = new ItemBooking;
+            $booking->id_user = $request->id_user;
+            $booking->id_item = $request->id_item;
+            $booking->start_date = $request->start;
+            $booking->end_date = $request->end;
+            $booking->status = 0;
+            $booking->created_at = $date;
+            $booking->updated_at = $date;
+            $booking->save();
 
-    	return back()->with('message','Booking Berhasil ditambahkan');
+            return back()->with('message','Booking Berhasil ditambahkan');
+        }else{
+            return back()->with('message','Tanggal sudah dipesan');
+        }
     }
 
     public function bookingDelete($id){
