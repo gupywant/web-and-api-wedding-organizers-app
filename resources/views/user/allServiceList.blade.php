@@ -18,7 +18,25 @@
 	          <div class="card">
 	            <!-- Card header -->
 	            <div class="card-header border-0">
-	              <h3 class="mb-0">Service List</h3>
+	              	<h3 class="mb-0">Service List</h3>
+	              	<div class="row">
+	            		<div class="col-sm-12">
+	            			@if(session('message'))
+				            <div class="card-header bg-transparent pb-2">
+				              <div class="alert alert-success">
+				                <strong>Sukses!</strong> {!!session('message')!!}.
+				              </div>
+				            </div>
+				            @endif
+				            @if(session('alert'))
+				            <div class="card-header bg-transparent pb-2">
+				              <div class="alert alert-danger">
+				                <strong>Gagal!</strong> {!!session('alert')!!}.
+				              </div>
+				            </div>
+				            @endif
+	            		</div>
+	            	</div>
 	            </div>
 	            <!-- Light table -->
 	            <div class="table-responsive">

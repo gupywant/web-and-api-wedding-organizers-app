@@ -130,6 +130,24 @@
                   <h3 class="mb-0">5 Most Viewed Service by User</h3>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  @if(session('message'))
+                  <div class="card-header bg-transparent pb-2">
+                    <div class="alert alert-success">
+                      <strong>Sukses!</strong> {!!session('message')!!}.
+                    </div>
+                  </div>
+                  @endif
+                  @if(session('alert'))
+                  <div class="card-header bg-transparent pb-2">
+                    <div class="alert alert-danger">
+                      <strong>Gagal!</strong> {!!session('alert')!!}.
+                    </div>
+                  </div>
+                  @endif
+                </div>
+              </div>
             </div>
             <div class="table-responsive">
               <!-- Projects table -->

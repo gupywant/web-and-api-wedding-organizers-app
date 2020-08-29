@@ -18,8 +18,8 @@
 	          <div class="card">
 	            <!-- Card header -->
 	            <div class="card-header border-0">
-	              <h3 class="mb-0">Booking From Your Service</h3>
-	              <div class="row">
+	              	<h3 class="mb-0">Booking From Your Service</h3>
+	              	<div class="row">
 	            		<div class="col-sm-12">
 	            			@if(session('message'))
 				            <div class="card-header bg-transparent pb-2">

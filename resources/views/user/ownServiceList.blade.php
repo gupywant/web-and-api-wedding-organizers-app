@@ -20,6 +20,24 @@
 	            <div class="card-header border-0">
 	              <h3 class="mb-0">Your Service List</h3>
 	            </div>
+	            	<div class="row">
+	            		<div class="col-sm-12">
+	            			@if(session('message'))
+				            <div class="card-header bg-transparent pb-2">
+				              <div class="alert alert-success">
+				                <strong>Sukses!</strong> {!!session('message')!!}.
+				              </div>
+				            </div>
+				            @endif
+				            @if(session('alert'))
+				            <div class="card-header bg-transparent pb-2">
+				              <div class="alert alert-danger">
+				                <strong>Gagal!</strong> {!!session('alert')!!}.
+				              </div>
+				            </div>
+				            @endif
+	            		</div>
+	            	</div>
 	            <!-- Light table -->
 	            <div class="table-responsive">
 	              <table class="table align-items-center table-flush" id="myTable">
