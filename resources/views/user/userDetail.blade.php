@@ -79,7 +79,7 @@
 							  <label class="form-control-label" for="input-last-name">Gender</label>
 							  <select name="gender" class="form-control" id="sel1">
 							    <option value="1" @if($user->gender==1) selected @endif>Male</option>
-							    <option value="2" @if($user->gender==1) selected @endif>Female</option>
+							    <option value="2" @if($user->gender==2) selected @endif>Female</option>
 							  </select>
 							</div>
 	                    </div>
