@@ -162,8 +162,8 @@ class adminController extends Controller
     		ItemBookmark::where('id_item',$value->id_item)->delete();
 	    	ItemImage::where('id_item',$value->id_item)->delete();
 	    	ItemBooking::where('id_item',$value->id_item)->delete();
-	    	ItemView::where('id_item',$value->id_item)->delete();
             ItemViewUser::where('id_item',$value->id_item)->delete();
+	    	ItemView::where('id_item',$value->id_item)->delete();
 	    }
     	Item::where('id_admin',$id)->delete();
     	Admin::where('id_admin',$id)->delete();
