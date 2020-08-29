@@ -25,7 +25,7 @@ class bookingController extends Controller
     		$data["message"] = "Booking berhasil direquest";
     		$data["status"] = "success";
     	}else{
-    		$data["message"] = "Tanggal sudah dipesan";
+    		$data["message"] = "$request->id_item | $request->start_date 00:00:00";
     		$data["status"] = "failed";
     	}
     	return response($data, 200, ['Content-Type => application/json']);
