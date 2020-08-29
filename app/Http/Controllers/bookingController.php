@@ -12,7 +12,7 @@ class bookingController extends Controller
     	$user = User::where('token',$request->token)->first();
     	$start_date = $request->start_date." 00:00:00";
     	$end_date = $request->end_date." 23:59:00";
-    	$checkBooking = ItemBooking::whereRaw("(start_date between '$start_date' and '$end_date') or (end_date between '$start_date' and '$end_date') and id_item=$request->id_item")->first();
+    	$checkBooking = ItemBooking::whereRaw("((start_date between '$start_date' and '$end_date') or (end_date between '$start_date' and '$end_date')) and id_item=$request->id_item")->first();
     	if(empty($checkBooking)){
     		$new = new ItemBooking;
     		$new->id_user = $user->id_user;
